@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DockMaster Pro — Custom Multi-Row Dock for macOS</title>
+    <meta name="description" content="A powerful, customizable multi-row Dock replacement for macOS. Organize apps into sections, switch workspaces, and customize everything.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚓</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav id="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+            </svg>
+            DockMaster Pro
+        </a>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="releases.html">Releases</a>
+            <a href="docs.html">Docs</a>
+            <a href="https://github.com/devlive-community/DockMaster" class="nav-cta" target="_blank">GitHub</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-badge">
+        <span class="dot"></span>
+        v1.0.0 — Now Available
+    </div>
+    <h1>Your Dock,<br><span class="gradient">Reimagined.</span></h1>
+    <p>A powerful, customizable multi-row Dock replacement for macOS. Organize apps into sections, switch workspaces, and customize everything.</p>
+    <div class="hero-actions">
+        <a href="releases.html" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Free
+        </a>
+        <a href="docs.html" class="btn btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            Documentation
+        </a>
+    </div>
+</section>
+
+<div class="mockup-container">
+    <div class="mockup fade-in">
+        <div class="mockup-bar">
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+        </div>
+        <div class="mockup-content">
+            <div class="mock-dock">
+                <div class="mock-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
+                <div class="mock-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
+                <div class="mock-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
+                <div class="mock-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);"></div>
+                <div class="mock-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);"></div>
+                <div class="mock-icon" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);"></div>
+                <div class="mock-icon" style="background: linear-gradient(135deg, #fccb90, #d57eeb);"></div>
+                <div class="mock-icon" style="background: linear-gradient(135deg, #e0c3fc, #8ec5fc);"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section" id="features">
+    <div class="section-header fade-in">
+        <h2>Everything You Need</h2>
+        <p>Powerful features to supercharge your macOS workflow.</p>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card fade-in">
+            <div class="feature-icon">⚡</div>
+            <h3>Multi-Row Dock</h3>
+            <p>Break free from the single-row limitation. Display your apps in a customizable grid layout with multiple rows and columns.</p>
+        </div>
+        <div class="feature-card fade-in">
+            <div class="feature-icon">📁</div>
+            <h3>Smart Sections</h3>
+            <p>Organize apps into named sections. Add, rename, reorder, and delete sections to keep your dock perfectly organized.</p>
+        </div>
+        <div class="feature-card fade-in">
+            <div class="feature-icon">🎨</div>
+            <h3>Theme Engine</h3>
+            <p>Full theme customization with colors, corner radius, blur, and shadows. Import and export themes as .dmtheme files.</p>
+        </div>
+        <div class="feature-card fade-in">
+            <div class="feature-icon">🖥️</div>
+            <h3>Workspaces</h3>
+            <p>Create multiple workspaces, each with its own dock layout. Bind to macOS Spaces for automatic switching.</p>
+        </div>
+        <div class="feature-card fade-in">
+            <div class="feature-icon">✨</div>
+            <h3>20+ Animations</h3>
+            <p>Bounce, Shake, Pulse, Flip 3D, Glitch, and more. Customize hover, launch, and quit animations for each app.</p>
+        </div>
+        <div class="feature-card fade-in">
+            <div class="feature-icon">🔍</div>
+            <h3>Quick Search</h3>
+            <p>Spotlight-like search panel for apps, files, documents, and recent items. Open with Option+Space.</p>
+        </div>
+        <div class="feature-card fade-in">
+            <div class="feature-icon">📊</div>
+            <h3>System Monitor</h3>
+            <p>Built-in CPU, memory, and network speed widget. Tap to expand and see detailed system metrics.</p>
+        </div>
+        <div class="feature-card fade-in">
+            <div class="feature-icon">🌍</div>
+            <h3>4 Languages</h3>
+            <p>English, Simplified Chinese, Traditional Chinese, and Japanese. Switch languages in-app without restarting.</p>
+        </div>
+        <div class="feature-card fade-in">
+            <div class="feature-icon">🔒</div>
+            <h3>Privacy First</h3>
+            <p>Open source, no tracking, no analytics. Your data stays on your Mac. Only requires Accessibility permission.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="download">
+    <div class="section-header fade-in">
+        <h2>Download</h2>
+        <p>Free and open source. Choose your architecture.</p>
+    </div>
+    <div class="download-card fade-in">
+        <div class="download-options">
+            <a href="https://github.com/devlive-community/DockMaster-Pro/releases/latest" class="download-btn" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Universal <span class="arch">(Recommended)</span>
+            </a>
+            <a href="https://github.com/devlive-community/DockMaster-Pro/releases/latest" class="download-btn" target="_blank">
+                Apple Silicon <span class="arch">(arm64)</span>
+            </a>
+            <a href="https://github.com/devlive-community/DockMaster-Pro/releases/latest" class="download-btn" target="_blank">
+                Intel <span class="arch">(x86_64)</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <p>© 2026 DockMaster Pro. MIT License.</p>
+        <div class="footer-links">
+            <a href="https://github.com/devlive-community/DockMaster" target="_blank">GitHub</a>
+            <a href="releases.html">Releases</a>
+            <a href="docs.html">Docs</a>
+            <a href="https://github.com/devlive-community/DockMaster/issues" target="_blank">Issues</a>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
