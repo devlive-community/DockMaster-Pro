@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation — DockMaster Pro</title>
+    <meta name="description" content="Documentation for DockMaster Pro — installation, usage, and configuration.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚓</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav id="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+            </svg>
+            DockMaster Pro
+        </a>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="releases.html">Releases</a>
+            <a href="docs.html" class="active">Docs</a>
+            <a href="#download" class="nav-cta">Download</a>
+        </div>
+    </div>
+</nav>
+
+<div class="docs-layout">
+    <aside class="docs-sidebar">
+        <h3>Getting Started</h3>
+        <ul class="docs-nav">
+            <li><a href="#introduction" class="active">Introduction</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#permissions">Permissions</a></li>
+            <li><a href="#quick-start">Quick Start</a></li>
+        </ul>
+        <h3 style="margin-top: 24px;">Features</h3>
+        <ul class="docs-nav">
+            <li><a href="#dock-layout">Dock Layout</a></li>
+            <li><a href="#sections">Sections</a></li>
+            <li><a href="#workspaces">Workspaces</a></li>
+            <li><a href="#themes">Themes</a></li>
+            <li><a href="#search">Quick Search</a></li>
+            <li><a href="#animations">Animations</a></li>
+        </ul>
+        <h3 style="margin-top: 24px;">Advanced</h3>
+        <ul class="docs-nav">
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+        </ul>
+    </aside>
+
+    <main class="docs-content">
+        <h1 id="introduction">Introduction</h1>
+        <p>DockMaster Pro is a powerful, customizable multi-row Dock replacement for macOS. It replaces the native macOS Dock with a feature-rich overlay that supports multiple rows, sections, workspaces, themes, and much more.</p>
+        <p>Built with Swift and SwiftUI, DockMaster Pro is designed to be fast, lightweight, and beautiful.</p>
+
+        <h2 id="installation">Installation</h2>
+        <ol>
+            <li>Download the latest version from the <a href="releases.html" style="color: var(--accent-light);">Releases</a> page.</li>
+            <li>Choose the appropriate architecture: <strong>Universal</strong> (recommended), <strong>Apple Silicon</strong>, or <strong>Intel</strong>.</li>
+            <li>Unzip the downloaded file.</li>
+            <li>Drag <code>DockMaster Pro.app</code> to your Applications folder.</li>
+            <li>Open the app from Applications. If Gatekeeper blocks it, right-click and select Open.</li>
+        </ol>
+
+        <h3>System Requirements</h3>
+        <ul>
+            <li>macOS 13.0 (Ventura) or later</li>
+            <li>Apple Silicon (arm64) or Intel (x86_64)</li>
+        </ul>
+
+        <h2 id="permissions">Permissions</h2>
+        <p>DockMaster Pro requires the following permissions to function properly:</p>
+        <ul>
+            <li><strong>Accessibility</strong> — Required to control the Dock process and manage other applications.</li>
+            <li><strong>Apple Events</strong> — Required to launch and interact with other applications.</li>
+        </ul>
+        <p>Grant these permissions in <strong>System Settings &gt; Privacy &amp; Security &gt; Accessibility</strong>.</p>
+
+        <h2 id="quick-start">Quick Start</h2>
+        <ol>
+            <li>Launch DockMaster Pro from Applications.</li>
+            <li>Grant Accessibility permission when prompted.</li>
+            <li>The app will automatically replace your native Dock with the DockMaster overlay.</li>
+            <li>Click the menu bar icon to access settings and workspace switcher.</li>
+            <li>Right-click on any dock icon to access context menu options.</li>
+        </ol>
+
+        <h2 id="dock-layout">Dock Layout</h2>
+        <p>Customize the dock appearance from Settings:</p>
+        <ul>
+            <li><strong>Position</strong> — Bottom, Left, or Right edge of the screen.</li>
+            <li><strong>Icon Size</strong> — 32px to 128px.</li>
+            <li><strong>Max Rows / Columns</strong> — Control the grid layout.</li>
+            <li><strong>Margin</strong> — Distance from the screen edge.</li>
+            <li><strong>Auto-hide</strong> — Hide when not in use, show on mouse proximity.</li>
+        </ul>
+
+        <h2 id="sections">Sections</h2>
+        <p>Organize your apps into logical groups:</p>
+        <ul>
+            <li>Click the <strong>+</strong> button in Settings to add a new section.</li>
+            <li>Drag apps from Finder or Launchpad into any section.</li>
+            <li>Right-click a section header to rename or delete it.</li>
+            <li>Drag section headers to reorder them.</li>
+        </ul>
+
+        <h2 id="workspaces">Workspaces</h2>
+        <p>Create multiple workspaces, each with its own dock layout:</p>
+        <ul>
+            <li>Open the menu bar extra and select <strong>Workspace Switcher</strong>.</li>
+            <li>Create new workspaces and assign unique dock layouts.</li>
+            <li>Bind workspaces to macOS Spaces for automatic switching.</li>
+            <li>Assign keyboard shortcuts for instant workspace switching.</li>
+        </ul>
+
+        <h2 id="themes">Themes</h2>
+        <p>Customize the dock appearance with themes:</p>
+        <ul>
+            <li>Choose from 3 built-in themes: <strong>Dark</strong>, <strong>Light</strong>, and <strong>Minimal</strong>.</li>
+            <li>Edit colors, corner radius, blur intensity, shadows, and icon padding.</li>
+            <li>Export themes as <code>.dmtheme</code> files to share with others.</li>
+            <li>Import themes by dragging <code>.dmtheme</code> files onto the app.</li>
+        </ul>
+
+        <h2 id="search">Quick Search</h2>
+        <p>Press <code>Option + Space</code> to open the search panel:</p>
+        <ul>
+            <li>Search for installed applications.</li>
+            <li>Search for files, documents, and bookmarks.</li>
+            <li>View recent items when the search field is empty.</li>
+            <li>Use arrow keys to navigate, Enter to open.</li>
+        </ul>
+
+        <h2 id="animations">Animations</h2>
+        <p>Choose from a rich set of animations:</p>
+        <ul>
+            <li><strong>20 hover styles</strong> — Bounce, Shake, Pulse, Flip 3D, Glitch, Tada, Heartbeat, and more.</li>
+            <li><strong>8 launch animations</strong> — Scale, Fade, Slide, Pop, and more.</li>
+            <li><strong>7 quit animations</strong> — Shrink, Fade, Dissolve, and more.</li>
+        </ul>
+        <p>Animations respect the macOS <strong>Reduce Motion</strong> accessibility setting.</p>
+
+        <h2 id="troubleshooting">Troubleshooting</h2>
+        <h3>App doesn't open</h3>
+        <p>DockMaster Pro is a menu bar app (LSUIElement). It won't show a window on launch. Look for the icon in the menu bar at the top of your screen.</p>
+
+        <h3>Gatekeeper blocks the app</h3>
+        <p>Right-click the app and select <strong>Open</strong> from the context menu. Alternatively, go to <strong>System Settings &gt; Privacy &amp; Security</strong> and click <strong>Open Anyway</strong>.</p>
+
+        <h3>Dock doesn't appear</h3>
+        <p>Make sure you've granted Accessibility permission. Go to <strong>System Settings &gt; Privacy &amp; Security &gt; Accessibility</strong> and ensure DockMaster Pro is enabled.</p>
+
+        <h3>App crashes on launch</h3>
+        <p>Check the Console app for crash logs. Search for "DockMasterPro" to find relevant entries. Common causes include corrupted preferences — try deleting <code>~/Library/Application Support/DockMasterPro/</code> and restarting.</p>
+    </main>
+</div>
+
+<section class="section" id="download" style="padding-top: 0;">
+    <div class="download-card fade-in">
+        <h2>Download DockMaster Pro</h2>
+        <p>Choose your architecture and get started.</p>
+        <div class="download-options">
+            <a href="#" class="download-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Universal <span class="arch">(Recommended)</span>
+            </a>
+            <a href="#" class="download-btn">
+                Apple Silicon <span class="arch">(arm64)</span>
+            </a>
+            <a href="#" class="download-btn">
+                Intel <span class="arch">(x86_64)</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <p>© 2026 DockMaster Pro. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="releases.html">Releases</a>
+            <a href="docs.html">Docs</a>
+            <a href="mailto:support@dockmaster.app">Support</a>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

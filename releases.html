@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Releases — DockMaster Pro</title>
+    <meta name="description" content="View all releases and download DockMaster Pro.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚓</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav id="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+            </svg>
+            DockMaster Pro
+        </a>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="releases.html" class="active">Releases</a>
+            <a href="docs.html">Docs</a>
+            <a href="#download" class="nav-cta">Download</a>
+        </div>
+    </div>
+</nav>
+
+<section class="section" style="padding-top: 120px;">
+    <div class="section-header">
+        <h2>Release History</h2>
+        <p>All versions of DockMaster Pro.</p>
+    </div>
+
+    <div class="releases-list">
+        <div class="release-item fade-in">
+            <div class="release-header">
+                <div>
+                    <span class="release-tag">v1.0.0</span>
+                    <span style="display: inline-block; margin-left: 12px; padding: 4px 12px; background: var(--accent-glow); border-radius: 12px; font-size: 12px; color: var(--accent-light);">Latest</span>
+                </div>
+                <span class="release-date">April 3, 2026</span>
+            </div>
+            <div class="release-notes">
+                <h3>🚀 New Features</h3>
+                <ul>
+                    <li>Multi-row / multi-column dock layout with 3 positions (bottom, left, right)</li>
+                    <li>Smart sections with add, rename, reorder, and delete</li>
+                    <li>Theme engine with 3 built-in themes (Dark, Light, Minimal)</li>
+                    <li>Workspace management with macOS Spaces binding</li>
+                    <li>Quick search panel (Option+Space) for apps, files, and recent items</li>
+                    <li>System monitor widget (CPU, Memory, Network)</li>
+                    <li>20+ hover animations, 8 launch animations, 7 quit animations</li>
+                    <li>4 languages: English, Simplified Chinese, Traditional Chinese, Japanese</li>
+                    <li>Menu bar integration with workspace switcher</li>
+                    <li>Native Dock replacement with auto-restore on quit</li>
+                </ul>
+            </div>
+            <div class="release-assets">
+                <a href="#download" class="release-asset">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Universal
+                </a>
+                <a href="#download" class="release-asset">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Apple Silicon
+                </a>
+                <a href="#download" class="release-asset">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Intel
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="download" style="padding-top: 0;">
+    <div class="download-card fade-in">
+        <h2>Download DockMaster Pro</h2>
+        <p>Choose your architecture and get started.</p>
+        <div class="download-options">
+            <a href="#" class="download-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Universal <span class="arch">(Recommended)</span>
+            </a>
+            <a href="#" class="download-btn">
+                Apple Silicon <span class="arch">(arm64)</span>
+            </a>
+            <a href="#" class="download-btn">
+                Intel <span class="arch">(x86_64)</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <p>© 2026 DockMaster Pro. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="releases.html">Releases</a>
+            <a href="docs.html">Docs</a>
+            <a href="mailto:support@dockmaster.app">Support</a>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
