@@ -52,6 +52,7 @@
         </ul>
         <h3 style="margin-top: 24px;">Advanced</h3>
         <ul class="docs-nav">
+            <li><a href="#plugin-development">Plugin Development</a></li>
             <li><a href="#troubleshooting">Troubleshooting</a></li>
         </ul>
     </aside>
@@ -147,6 +148,400 @@
             <li><strong>7 quit animations</strong> — Shrink, Fade, Dissolve, and more.</li>
         </ul>
         <p>Animations respect the macOS <strong>Reduce Motion</strong> accessibility setting.</p>
+
+        <h2 id="plugin-development">Plugin Development</h2>
+        <p>DockMaster Pro supports a powerful plugin system that allows developers to extend the application's functionality. Plugins can add new widgets, search providers, menu items, themes, and more.</p>
+
+        <h3 id="plugin-overview">Overview</h3>
+        <p>The plugin system is designed with the following principles:</p>
+        <ul>
+            <li><strong>Self-contained</strong> — Each plugin manages its own localization, configuration, and resources.</li>
+            <li><strong>Type-safe</strong> — Plugins implement specific protocols based on their functionality type.</li>
+            <li><strong>Internationalized</strong> — Full support for multi-language plugins using the <code>PluginLocalizable</code> protocol.</li>
+            <li><strong>Hot-swappable</strong> — Plugins can be enabled/disabled at runtime without restarting the app.</li>
+        </ul>
+
+        <h3 id="plugin-types">Plugin Types</h3>
+        <p>DockMaster Pro supports the following plugin types:</p>
+        <table class="docs-table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Protocol</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Widget</strong></td>
+                    <td><code>WidgetPlugin</code></td>
+                    <td>Add custom metrics to the status widget (weather, CPU stats, etc.)</td>
+                </tr>
+                <tr>
+                    <td><strong>Search</strong></td>
+                    <td><code>SearchPlugin</code></td>
+                    <td>Extend Quick Search with custom search providers</td>
+                </tr>
+                <tr>
+                    <td><strong>Menu</strong></td>
+                    <td><code>MenuPlugin</code></td>
+                    <td>Add custom items to dock icon context menus</td>
+                </tr>
+                <tr>
+                    <td><strong>Theme</strong></td>
+                    <td><code>ThemePlugin</code></td>
+                    <td>Provide custom themes and icon packs</td>
+                </tr>
+                <tr>
+                    <td><strong>Shortcut</strong></td>
+                    <td><code>ShortcutPlugin</code></td>
+                    <td>Register custom keyboard shortcuts</td>
+                </tr>
+                <tr>
+                    <td><strong>Notification</strong></td>
+                    <td><code>NotificationPlugin</code></td>
+                    <td>Create custom notification rules</td>
+                </tr>
+                <tr>
+                    <td><strong>DataSource</strong></td>
+                    <td><code>DataSourcePlugin</code></td>
+                    <td>Provide external data feeds</td>
+                </tr>
+                <tr>
+                    <td><strong>Layout</strong></td>
+                    <td><code>LayoutPlugin</code></td>
+                    <td>Implement custom dock layout algorithms</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="plugin-structure">Plugin Structure</h3>
+        <p>Every plugin must implement the base <code>DockMasterPlugin</code> protocol and one or more type-specific protocols:</p>
+
+        <pre><code>import SwiftUI
+
+class MyPlugin: WidgetPlugin, PluginLocalizable {
+    // Required: Plugin metadata
+    let metadata = PluginMetadata(
+        id: "com.example.myplugin",
+        name: "My Plugin",
+        nameLocalized: [
+            "en": "My Plugin",
+            "zh-Hans": "我的插件",
+            "zh-Hant": "我的外掛",
+            "ja": "マイプラグイン"
+        ],
+        version: "1.0.0",
+        buildNumber: "1",
+        author: "Your Name",
+        description: "A sample plugin",
+        descriptionLocalized: [
+            "en": "A sample plugin",
+            "zh-Hans": "一个示例插件",
+            "zh-Hant": "一個範例外掛",
+            "ja": "サンプルプラグイン"
+        ],
+        type: .widget,
+        icon: "star"
+    )
+
+    // Required: Plugin context (injected by system)
+    var context: PluginContext?
+
+    // Required: Plugin state
+    private(set) var state: PluginState = .installed
+
+    // MARK: - PluginLocalizable
+
+    let localizedStrings: [String: [String: String]] = [
+        "my.label": [
+            "en": "Label",
+            "zh-Hans": "标签",
+            "zh-Hant": "標籤",
+            "ja": "ラベル"
+        ],
+        "my.description": [
+            "en": "Description",
+            "zh-Hans": "描述",
+            "zh-Hant": "描述",
+            "ja": "説明"
+        ]
+    ]
+
+    // MARK: - Lifecycle
+
+    func activate() async throws {
+        state = .active
+        // Initialize your plugin here
+    }
+
+    func deactivate() async {
+        state = .installed
+        // Clean up resources here
+    }
+
+    // MARK: - WidgetPlugin
+
+    var widgetItems: [PluginWidgetItem] {
+        [
+            PluginWidgetItem(
+                id: "my-item",
+                name: localized("my.label"),
+                icon: "star.fill",
+                value: "42",
+                detail: localized("my.description")
+            )
+        ]
+    }
+
+    func updateData() async {
+        // Refresh your data here
+    }
+
+    // Optional: Configuration view
+    var configurationView: AnyView? {
+        AnyView(MyPluginConfigView(plugin: self))
+    }
+}</code></pre>
+
+        <h3 id="plugin-internationalization">Internationalization</h3>
+        <p>Plugins should support multiple languages using the <code>PluginLocalizable</code> protocol. This allows your plugin to be used by users worldwide.</p>
+
+        <h4>Metadata Localization</h4>
+        <p>Provide localized names and descriptions in the <code>PluginMetadata</code>:</p>
+        <pre><code>let metadata = PluginMetadata(
+    id: "com.example.plugin",
+    name: "Default Name",  // Fallback language
+    nameLocalized: [
+        "en": "Weather",
+        "zh-Hans": "天气",
+        "zh-Hant": "天氣",
+        "ja": "天気"
+    ],
+    description: "Default description",
+    descriptionLocalized: [
+        "en": "Display weather in Dock",
+        "zh-Hans": "在 Dock 显示天气",
+        "zh-Hant": "在 Dock 顯示天氣",
+        "ja": "Dockに天気を表示"
+    ],
+    // ...
+)</code></pre>
+
+        <h4>UI String Localization</h4>
+        <p>Implement <code>PluginLocalizable</code> for UI strings:</p>
+        <pre><code>class MyPlugin: WidgetPlugin, PluginLocalizable {
+    let localizedStrings: [String: [String: String]] = [
+        "settings.city": [
+            "en": "City",
+            "zh-Hans": "城市",
+            "zh-Hant": "城市",
+            "ja": "都市"
+        ],
+        "settings.placeholder": [
+            "en": "Enter city name",
+            "zh-Hans": "输入城市名称",
+            "zh-Hant": "輸入城市名稱",
+            "ja": "都市名を入力"
+        ]
+    ]
+
+    // Use localized strings
+    var widgetItems: [PluginWidgetItem] {
+        [PluginWidgetItem(
+            id: "weather",
+            name: localized("settings.city"),
+            icon: "cloud.sun",
+            value: "22°C"
+        )]
+    }
+}</code></pre>
+
+        <h4>Supported Languages</h4>
+        <ul>
+            <li><strong>en</strong> — English</li>
+            <li><strong>zh-Hans</strong> — 简体中文 (Simplified Chinese)</li>
+            <li><strong>zh-Hant</strong> — 繁體中文 (Traditional Chinese)</li>
+            <li><strong>ja</strong> — 日本語 (Japanese)</li>
+        </ul>
+
+        <h3 id="plugin-permissions">Plugin Permissions</h3>
+        <p>Declare required permissions in your plugin metadata:</p>
+        <pre><code>let metadata = PluginMetadata(
+    id: "com.example.plugin",
+    name: "My Plugin",
+    version: "1.0.0",
+    buildNumber: "1",
+    author: "Your Name",
+    description: "Description",
+    type: .widget,
+    permissions: [.network, .filesystem]
+)</code></pre>
+
+        <p>Available permissions:</p>
+        <ul>
+            <li><code>.filesystem</code> — Access to file system</li>
+            <li><code>.network</code> — Network access for API calls</li>
+            <li><code>.accessibility</code> — Accessibility features</li>
+            <li><code>.notifications</code> — Send notifications</li>
+            <li><code>.workspace</code> — Access workspace data</li>
+            <li><code>.theme</code> — Access theme data</li>
+            <li><code>.settings</code> — Access app settings</li>
+            <li><code>.runningApps</code> — Access running app information</li>
+        </ul>
+
+        <h3 id="plugin-api">Plugin API Reference</h3>
+
+        <h4>PluginContext</h4>
+        <p>The <code>PluginContext</code> provides access to app functionality:</p>
+        <pre><code>protocol PluginContext {
+    // App info
+    var appVersion: String { get }
+    var appName: String { get }
+
+    // Localization
+    var currentLanguage: String { get }
+    func localizedString(_ key: String, _ args: CVarArg...) -> String
+
+    // Data access
+    func getSections() -> [DockSection]
+    func getPinnedItems() -> [DockPinnedItem]
+    func getRecentItems() -> [DockItem]
+    func getWorkspaces() -> [Workspace]
+    func getCurrentWorkspace() -> Workspace?
+    func getActiveTheme() -> Theme
+
+    // System metrics
+    func getSystemMetrics() async -> SystemMetricsSnapshot
+
+    // Actions
+    func launchApp(bundleIdentifier: String)
+    func showNotification(title: String, message: String)
+    func openSettings()
+}</code></pre>
+
+        <h4>PluginWidgetItem</h4>
+        <p>Represents a widget item displayed in the status widget:</p>
+        <pre><code>struct PluginWidgetItem {
+    let id: String           // Unique identifier
+    let name: String         // Display name (should be localized)
+    let icon: String         // SF Symbol name
+    let value: String        // Primary value to display
+    let detail: String?      // Optional detail text
+}</code></pre>
+
+        <h3 id="plugin-example">Complete Example: Weather Plugin</h3>
+        <p>Here's a complete example of a weather plugin:</p>
+        <pre><code>import SwiftUI
+import Foundation
+
+class WeatherPlugin: WidgetPlugin, PluginLocalizable {
+    let metadata: PluginMetadata
+    var context: PluginContext?
+    private(set) var state: PluginState = .installed
+
+    // MARK: - Localization
+
+    let localizedStrings: [String: [String: String]] = [
+        "weather.temp": [
+            "en": "Temperature",
+            "zh-Hans": "温度",
+            "zh-Hant": "溫度",
+            "ja": "温度"
+        ],
+        "weather.humidity": [
+            "en": "Humidity",
+            "zh-Hans": "湿度",
+            "zh-Hant": "濕度",
+            "ja": "湿度"
+        ],
+        "settings.city": [
+            "en": "City",
+            "zh-Hans": "城市",
+            "zh-Hant": "城市",
+            "ja": "都市"
+        ]
+    ]
+
+    // MARK: - Init
+
+    init() {
+        self.metadata = PluginMetadata(
+            id: "com.example.weather",
+            name: "Weather",
+            nameLocalized: [
+                "en": "Weather",
+                "zh-Hans": "天气",
+                "zh-Hant": "天氣",
+                "ja": "天気"
+            ],
+            version: "1.0.0",
+            buildNumber: "1",
+            author: "Example",
+            description: "Display weather in Dock",
+            descriptionLocalized: [
+                "en": "Display weather in Dock",
+                "zh-Hans": "在 Dock 显示天气",
+                "zh-Hant": "在 Dock 顯示天氣",
+                "ja": "Dockに天気を表示"
+            ],
+            type: .widget,
+            icon: "cloud.sun",
+            permissions: [.network]
+        )
+    }
+
+    // MARK: - Lifecycle
+
+    func activate() async throws {
+        state = .active
+        await fetchWeather()
+    }
+
+    func deactivate() async {
+        state = .installed
+    }
+
+    // MARK: - WidgetPlugin
+
+    var widgetItems: [PluginWidgetItem] {
+        [
+            PluginWidgetItem(
+                id: "weather-temp",
+                name: localized("weather.temp"),
+                icon: "thermometer",
+                value: "22°C",
+                detail: "Sunny"
+            ),
+            PluginWidgetItem(
+                id: "weather-humidity",
+                name: localized("weather.humidity"),
+                icon: "humidity",
+                value: "65%"
+            )
+        ]
+    }
+
+    func updateData() async {
+        await fetchWeather()
+    }
+
+    // MARK: - Private
+
+    private func fetchWeather() async {
+        // Fetch weather data from API
+    }
+}</code></pre>
+
+        <h3 id="plugin-best-practices">Best Practices</h3>
+        <ul>
+            <li><strong>Always localize</strong> — Use <code>PluginLocalizable</code> for all user-facing strings.</li>
+            <li><strong>Handle errors gracefully</strong> — Don't crash the host app if your plugin fails.</li>
+            <li><strong>Clean up resources</strong> — Release timers, observers, and network connections in <code>deactivate()</code>.</li>
+            <li><strong>Use unique IDs</strong> — Ensure your plugin ID and item IDs are globally unique.</li>
+            <li><strong>Declare permissions</strong> — Only request permissions your plugin actually needs.</li>
+            <li><strong>Test thoroughly</strong> — Test with all supported languages and macOS versions.</li>
+        </ul>
 
         <h2 id="troubleshooting">Troubleshooting</h2>
         <h3>App doesn't open</h3>

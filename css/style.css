@@ -692,6 +692,43 @@ nav.scrolled { background: rgba(10, 10, 15, 0.95); }
     line-height: 1.7;
 }
 
+/* ── Docs Table ──────────────────────── */
+.docs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+}
+
+.docs-table thead {
+    background: var(--bg-card);
+}
+
+.docs-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border);
+}
+
+.docs-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+}
+
+.docs-table tbody tr:hover {
+    background: var(--bg-card-hover);
+}
+
+.docs-table code {
+    background: var(--bg-card);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
 /* ── Footer ────────────────────────────── */
 footer {
     border-top: 1px solid var(--border);
